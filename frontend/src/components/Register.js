@@ -26,13 +26,11 @@ const Register = () => {
     setError('');
     setSuccess('');
     
-    // Validate passwords match
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
     }
     
-    // Client-side validation
     if (password.length < 6) {
       setError('Password must be at least 6 characters');
       return;
@@ -46,12 +44,10 @@ const Register = () => {
         password
       });
       
-      setSuccess('Registration successful! Redirecting to login...');
+      setSuccess('Registration successful!');
       
-      // Redirect to login after 2 seconds
-      setTimeout(() => {
-        navigate('/');
-      }, 2000);
+      // Redirect to login immediately after successful registration
+      navigate('/');
     } catch (err) {
       // Display error message from the server
       const errorMessage = err.response?.data?.message || 'Registration failed. Please try again.';
