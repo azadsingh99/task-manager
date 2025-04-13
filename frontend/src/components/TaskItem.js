@@ -11,7 +11,7 @@ const TaskItem = ({ task, onEdit, onDelete, onToggleComplete }) => {
   };
 
   return (
-    <div className={`task-item ${completed ? 'completed' : ''}`}>
+    <div className={`task-item ${completed ? 'completed' : ''}`} key={_id}>
       <div className="task-content">
         <h3 className="task-title">{title}</h3>
         {description && <p className="task-description">{description}</p>}

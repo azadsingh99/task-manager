@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { FaPlus, FaEdit, FaTrash, FaCheck, FaUndo } from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 import TaskForm from './TaskForm';
 import TaskItem from './TaskItem';
 import config from '../config';
@@ -11,37 +11,34 @@ const Dashboard = () => {
   const [error, setError] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
   const [editTask, setEditTask] = useState(null);
-
-  // Fetch tasks on component mount
-  useEffect(() => {
-    fetchTasks();
-  }, []);
-
-  // Get auth token from localStorage
-  const getAuthHeader = () => {
+ 
+  const getAuthHeader = useCallback(() => {
     const token = localStorage.getItem('token');
     return {
       headers: {
         Authorization: `Bearer ${token}`
       }
     };
-  };
+  }, []);
 
-  // Fetch all tasks
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback(async () => {
     try {
       setLoading(true);
       const response = await axios.get(config.endpoints.tasks, getAuthHeader());
       setTasks(response.data);
       setError('');
     } catch (err) {
-      setError('Failed to fetch tasks. Please try again.');
+      setError('Failed to fetch tasks');
       console.error(err);
     } finally {
       setLoading(false);
     }
-  };
-
+  }, [getAuthHeader]);
+ 
+  useEffect(() => {
+    fetchTasks();
+  }, [fetchTasks]);
+ 
   // Add a new task
   const addTask = async (taskData) => {
     try {
@@ -88,8 +85,7 @@ const Dashboard = () => {
       console.error(err);
     }
   };
-
-  // Delete a task
+ 
   const deleteTask = async (id) => {
     try {
       await axios.delete(`${config.endpoints.tasks}/${id}`, getAuthHeader());

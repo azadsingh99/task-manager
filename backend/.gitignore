@@ -1,8 +1,6 @@
 # Dependencies
 node_modules/
-npm-debug.log
-yarn-debug.log
-yarn-error.log
+npm-debug.log  
 package-lock.json
 
 # Environment variables and secrets
@@ -10,32 +8,8 @@ package-lock.json
 .env.*
 *.env
 .env.local
-.env.development
-.env.test
-.env.production
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Security & credentials
-*.pem
-*.key
-*.cert
-*.crt
-*.p12
-*.pfx
-*.jks
-*.keystore
-*config.json
-*secret*
-*credential*
-*password*
-*token*
-*auth*
-*api-key*
-*apikey*
-jwt-secret*
+ 
+ 
 
 # Data files
 /data/*.json
@@ -57,11 +31,8 @@ pids
 
 # Deployment related
 .netlify
-.vercel
-.firebase
-firebase.json
-.serverless
-serverless.yml
+ 
+# serverless.yml  # Commented out to allow access
 windsurf_deployment.yaml
 *deployment*
 

@@ -30,7 +30,7 @@ backend/data/*.json
 .firebase
 firebase.json
 .serverless
-serverless.yml
+# serverless.yml  # Commented out to allow access
 windsurf_deployment.yaml
 *deployment*
 

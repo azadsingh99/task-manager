@@ -3,7 +3,6 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
-const serverless = require('serverless-http');
 
 // Load environment variables
 dotenv.config();
@@ -30,16 +29,10 @@ app.get('/', (req, res) => {
 app.use(notFound);
 app.use(errorHandler);
 
-// For AWS Lambda
-const handler = serverless(app);
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode`);
+});
 
-// For local development
-if (require.main === module) {
-  const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT} in ${process.env.NODE_ENV} mode`);
-  });
-}
-
-// Export for serverless
-module.exports = { app, handler };
+module.exports = app;
