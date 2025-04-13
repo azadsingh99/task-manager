@@ -1,5 +1,6 @@
 // API URL configuration
-const API_URL = 'http://localhost:5000';
+const API_URL = 'https://task-manager-okij.onrender.com';
+// const API_URL = 'http://localhost:5000'
 
 const config = {
   API_URL,

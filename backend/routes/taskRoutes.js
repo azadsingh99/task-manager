@@ -9,17 +9,10 @@ const {
 } = require('../controllers/taskController');
 const { protect } = require('../middleware/authMiddleware');
 
-// All routes are protected
-router.use(protect);
-
-// Routes
-router.route('/')
-  .get(getTasks)
-  .post(createTask);
-
-router.route('/:id')
-  .get(getTaskById)
-  .put(updateTask)
-  .delete(deleteTask);
+router.get('/', protect, getTasks);
+router.post('/', protect, createTask);
+router.get('/:id', protect, getTaskById); 
+router.put('/:id', protect, updateTask);
+router.delete('/:id', protect, deleteTask);
 
 module.exports = router;
