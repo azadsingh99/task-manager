@@ -58,7 +58,7 @@ A simple app to manage your tasks with login features.
    This opens in your browser at http://localhost:3000
 
 ## API Endpoints (How the App Talks to the Server)
-  online using Netlify, Vercel, or Heroku.
+  online using Netlify and Render.
 
 ## License
 
